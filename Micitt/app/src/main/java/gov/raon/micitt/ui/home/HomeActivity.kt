@@ -1,6 +1,8 @@
 package gov.raon.micitt.ui.home
 
+import android.Manifest
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -10,10 +12,14 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.PermissionRequest
+import android.webkit.WebChromeClient
+import android.webkit.WebView
 import android.widget.PopupWindow
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.google.gson.Gson
@@ -61,6 +67,7 @@ class HomeActivity : BaseActivity() {
     private var eDoc: String? = null
     private var isMiCertifi = true
     private lateinit var sharedPreferences: SharedPreferences
+    private val CAMERA_PERMISSION_REQUEST_CODE = 101
 
 
     private val activityResultLauncher = registerForActivityResult(
@@ -85,8 +92,13 @@ class HomeActivity : BaseActivity() {
 
     private fun initView() {
         binding.header.moreRl.visibility = View.VISIBLE
+        binding.header.agentButton.visibility = View.VISIBLE
         binding.header.moreRl.setOnClickListener { view ->
             viewPopup(view)
+        }
+
+        binding.header.agentButton.setOnClickListener { 
+            showAgentDialog()
         }
 
         hashedNid = intent.getStringExtra("hashedNid")
@@ -143,6 +155,7 @@ class HomeActivity : BaseActivity() {
         val licenceItem: TextView = popupView.findViewById(R.id.licence_item)
         val fuelItem: TextView = popupView.findViewById(R.id.fuel_item)
         val exchangeItem: TextView = popupView.findViewById(R.id.exchange_item)
+        val agentItem: TextView = popupView.findViewById(R.id.agent_item)
 
         profileItem.setOnClickListener {
             Intent(this, SettingActivity::class.java).also { intent ->
@@ -191,6 +204,11 @@ class HomeActivity : BaseActivity() {
             popupWindow.dismiss()
         }
 
+        agentItem.setOnClickListener { 
+            showAgentDialog()
+            popupWindow.dismiss()
+        }
+
         val display = windowManager.defaultDisplay
         val size = Point()
         display.getSize(size)
@@ -204,6 +222,27 @@ class HomeActivity : BaseActivity() {
 
         popupWindow.showAsDropDown(view, xOffset, yOffset, Gravity.END)
 
+    }
+
+    private fun showAgentDialog(){
+        val dialog = Dialog(this, android.R.style.Theme_Black_NoTitleBar_Fullscreen)
+        dialog.setContentView(R.layout.dialog_agent)
+        val webView = dialog.findViewById<WebView>(R.id.webView)
+        webView.settings.javaScriptEnabled = true
+        webView.webChromeClient = object : WebChromeClient() {
+            override fun onPermissionRequest(request: PermissionRequest) {
+                if (request.origin.toString().startsWith("https://assistant.ai-kuanta.com/")) {
+                     ActivityCompat.requestPermissions(this@HomeActivity,
+                        arrayOf(Manifest.permission.RECORD_AUDIO),
+                        CAMERA_PERMISSION_REQUEST_CODE)
+                    request.grant(request.resources)
+                } else {
+                    request.deny()
+                }
+            }
+        }
+        webView.loadUrl("https://assistant.ai-kuanta.com/en/chatbot/embed/48d04a12-3d46-457c-89cf-52f989f9acf9")
+        dialog.show()
     }
 
     private fun updateCertUIView() {
@@ -254,14 +293,14 @@ class HomeActivity : BaseActivity() {
 
             if (documentAdapter == null) {
                 documentAdapter = DocumentAdapter(this, it)
-                documentAdapter!!.setDocumentClickListener {
+                documentAdapter!!.setDocumentClickListener { 
                     Intent(this, CertDetailActivity::class.java).also { act ->
                         act.putExtra("cardObj", it.toJson().toString())
                         startActivity(act)
                     }
                 }
 
-                documentAdapter!!.setOnButtonClicked {
+                documentAdapter!!.setOnButtonClicked { 
                     getDialogBuilder { it2 ->
                         it2.title("¿Desea eliminar este certificado?")
                         it2.message("El certificado y la información relacionada serán eliminados de inmediato y podrán ser emitidos nuevamente si es necesario.")
@@ -416,9 +455,9 @@ class HomeActivity : BaseActivity() {
                     }
                 }
             }
+
         }
     }
-
     private fun getDocument() {
         showProgress()
         selectDocumentModel = DocumentModel(
@@ -430,28 +469,4 @@ class HomeActivity : BaseActivity() {
         eDocDataType = selectDocumentModel!!.dataType
         homeViewModel.getDocument(selectDocumentModel!!)
     }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 100 && resultCode == RESULT_OK) {
-            getDocument()
-        }
-    }
-
-//    override fun onBackPressed() {
-//        getDialogBuilder {
-//            it.title("Logout")
-//            it.message("¿Quieres cerrar sesión en la aplicación?")
-//            it.btnConfirm("Sí")
-//            it.btnCancel("No")
-//            showDialog(it) { result, _ ->
-//                if (result) {
-//                    this.moveTaskToBack(true)
-//                    this.finishAndRemoveTask()
-//                    android.os.Process.killProcess(android.os.Process.myPid())
-//                }
-//            }
-//        }
-//    }
 }
-

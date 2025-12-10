@@ -85,4 +85,6 @@
 
     <string name="cert_vacuna_title">Vacuna Fiebre Amarilla</string>
     <string name="str_button_vacuna_download">Descargar Certificado</string>
+    <string name="open_agent">Agente 🤖</string>
+    <string name="content_description_agent">Agente</string>
 </resources>
