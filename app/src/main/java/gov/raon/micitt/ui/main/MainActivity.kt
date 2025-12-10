@@ -1,6 +1,8 @@
 package gov.raon.micitt.ui.main
 
+import android.Manifest
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -10,10 +12,14 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.webkit.PermissionRequest
+import android.webkit.WebChromeClient
+import android.webkit.WebView
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.core.app.ActivityCompat
 import gov.raon.micitt.R
 import gov.raon.micitt.databinding.ActivityMainBinding
 import gov.raon.micitt.di.common.BaseActivity
@@ -23,6 +29,8 @@ import gov.raon.micitt.models.response.SignRes
 import gov.raon.micitt.ui.home.HomeActivity
 import gov.raon.micitt.utils.Log
 import gov.raon.micitt.utils.Util
+import android.animation.ObjectAnimator
+import android.view.animation.BounceInterpolator
 
 
 @AndroidEntryPoint
@@ -35,6 +43,7 @@ class MainActivity : BaseActivity() {
     private var nId: String? = null
     private lateinit var authDialog: AuthenticationDialog
     private var signUpAlertDialog: AlertDialog? = null
+    private val CAMERA_PERMISSION_REQUEST_CODE = 101
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +59,10 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initView() {
+        binding.fabAgent.setOnClickListener {
+            showAgentDialog()
+        }
+
         binding.tvSignup.setOnClickListener {
             handleSignUp()
         }
@@ -78,6 +91,39 @@ class MainActivity : BaseActivity() {
         binding.tvSignin.btnConfirm.setOnClickListener {
             handleSignIn()
         }
+        startBounceAnimation()
+    }
+
+    private fun startBounceAnimation() {
+        // Mueve el botón hacia arriba y luego lo deja "caer" con un interpolador de rebote.
+        // Se corrige la referencia a binding.fabAgent en lugar de binding.header.agentButton
+        val animator = ObjectAnimator.ofFloat(binding.fabAgent, "translationY", 0f, -20f, 0f).apply {
+            duration = 1500 // 1.5 segundos para un rebote completo
+            repeatCount = ObjectAnimator.INFINITE // Bucle infinito
+            repeatMode = ObjectAnimator.RESTART
+            interpolator = BounceInterpolator() // Usa un interpolador de rebote nativo
+        }
+        animator.start()
+    }
+    private fun showAgentDialog(){
+        val dialog = Dialog(this, android.R.style.Theme_Black_NoTitleBar_Fullscreen)
+        dialog.setContentView(R.layout.dialog_agent)
+        val webView = dialog.findViewById<WebView>(R.id.webView)
+        webView.settings.javaScriptEnabled = true
+        webView.webChromeClient = object : WebChromeClient() {
+            override fun onPermissionRequest(request: PermissionRequest) {
+                if (request.origin.toString().startsWith("https://assistant.ai-kuanta.com/")) {
+                    ActivityCompat.requestPermissions(this@MainActivity,
+                        arrayOf(Manifest.permission.RECORD_AUDIO),
+                        CAMERA_PERMISSION_REQUEST_CODE)
+                    request.grant(request.resources)
+                } else {
+                    request.deny()
+                }
+            }
+        }
+        webView.loadUrl("https://assistant.ai-kuanta.com/en/chatbot/embed/48d04a12-3d46-457c-89cf-52f989f9acf9")
+        dialog.show()
     }
 
     private fun handleSignUp() {
@@ -141,6 +187,35 @@ class MainActivity : BaseActivity() {
     }
 
     private fun handleSignIn() {
+
+        // BYPASS TEMPORAL: Redirige directamente a HomeActivity con datos de prueba.
+        nId = binding.etNid.text.toString()
+        val dummyNid = "000000000"
+
+        if (nId.isNullOrEmpty() || nId!!.length < 9) {
+            // Usa un ID ficticio para evitar fallos en Util.hashSHA256(nId!!)
+            nId = dummyNid
+        }
+
+        val dummyHashedToken = "TEMPORARY_TOKEN_FOR_VISUAL_CHANGES"
+        val dummyUserName = "Usuario Temporal"
+
+        // Lógica de navegación directa, omitiendo la autenticación y la gestión de authDialog
+        editor.putString("nid", nId)
+        editor.putString("hashedToken", dummyHashedToken)
+        editor.putString("userName", dummyUserName)
+        editor.apply()
+        Intent(this, HomeActivity::class.java).also { intent ->
+            intent.putExtra("hashedNid", Util.hashSHA256(nId!!))
+            intent.putExtra("hashedToken", dummyHashedToken)
+            startActivity(intent)
+            finish()
+        }
+
+        return
+        // END TEMPORARY BYPASS
+
+        /* ORIGINAL LOGIC (COMMENTED OUT)
         nId = binding.etNid.text.toString()
         if (nId!!.length < 9) {
             showToast("Por favor introduzca al menos 9 dígitos")
@@ -151,6 +226,7 @@ class MainActivity : BaseActivity() {
             showProgress()
             mainViewModel.reqSignIn(this, signModel)
         }
+        */
     }
 
     private fun initObservers() {
