@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="18dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="5dp"
+        card_view:cardElevation="0dp">
+
+        <LinearLayout
+            android:id="@+id/layer_document"
+            android:layout_width="match_parent"
+            android:layout_height="287dp"
+            android:background="@drawable/bg_rounded"
+            android:orientation="vertical"
+            android:paddingTop="20dp"
+            android:paddingBottom="0dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="14dp">
+
+                <ImageView
+                    android:id="@+id/cfia_logo_large"
+                    android:layout_width="match_parent"
+                    android:layout_height="84dp"
+                    android:src="@drawable/cfia_logo"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/cfia_logo_small"
+                    android:layout_width="240dp"
+                    android:layout_height="72dp"
+                    android:src="@drawable/cfia_logo" />
+
+                <ImageView
+                    android:id="@+id/btn_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ico_close_grey" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:paddingHorizontal="28dp">
+
+                <TextView
+                    android:id="@+id/tv_type"
+                    android:layout_width="49dp"
+                    android:layout_height="26dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_data_type_rounded"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:letterSpacing="0.04"
+                    android:text="JSON"
+                    android:textColor="#231F20"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/mem_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="26dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_member_type_rounded"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:letterSpacing="0.04"
+                    android:paddingHorizontal="8dp"
+                    android:text="MIEMBRO"
+                    android:textColor="#231F20"
+                    android:textSize="11sp"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="28dp">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:lineSpacingExtra="-1sp"
+                    android:text="CARNET CFIA"
+                    android:textAppearance="@style/driver_s_li"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="28dp"
+                android:paddingBottom="31dp">
+
+                <LinearLayout
+                    android:id="@+id/default_layout"
+                    android:layout_width="136dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/str_issuer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/poppins_medium"
+                        android:paddingBottom="4dp"
+                        android:text="EMISOR"
+                        android:textAppearance="@style/issuer_cost"
+                        android:textColor="#545457"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:id="@+id/str_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="top"
+                        android:paddingBottom="4dp"
+                        android:text="FECHA DE EMISIÓN"
+                        android:textAppearance="@style/issuer_cost"
+                        android:textColor="#545457"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/member_layout"
+                    android:layout_width="136dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/str_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/poppins_medium"
+                        android:paddingBottom="4dp"
+                        android:text="N° IDENTIFICACIÓN"
+                        android:textAppearance="@style/issuer_cost"
+                        android:textColor="#545457"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:id="@+id/str_lincense"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="top"
+                        android:paddingBottom="4dp"
+                        android:text="CARNET"
+                        android:textAppearance="@style/issuer_cost"
+                        android:textColor="#545457"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/default_value_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_vc"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/poppins_medium"
+                        android:lineSpacingExtra="2sp"
+                        android:paddingBottom="4dp"
+                        android:text="CFIA"
+                        android:textAppearance="@style/issuer_cost"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:id="@+id/tv_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/poppins_medium"
+                        android:lineSpacingExtra="4sp"
+                        android:paddingBottom="4dp"
+                        android:text="DD/MM/YYYY"
+                        android:textAppearance="@style/issuer_cost"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/member_value_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tv_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/poppins_medium"
+                        android:lineSpacingExtra="2sp"
+                        android:paddingBottom="4dp"
+                        android:text="000000000"
+                        android:textAppearance="@style/issuer_cost"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:id="@+id/tv_license"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/poppins_medium"
+                        android:lineSpacingExtra="4sp"
+                        android:paddingBottom="4dp"
+                        android:text="II-00000, IME-00000"
+                        android:textAppearance="@style/issuer_cost"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="9dp"
+                    android:layout_weight="1"
+                    android:background="#FCB429" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="9dp"
+                    android:layout_weight="1"
+                    android:background="#B21F24" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="9dp"
+                    android:layout_weight="1"
+                    android:background="#76777A" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="9dp"
+                    android:layout_weight="1"
+                    android:background="#D5D5D6" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

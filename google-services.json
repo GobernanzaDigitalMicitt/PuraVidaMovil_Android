@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "645023613235",
+    "project_id": "puravida-30dbb",
+    "storage_bucket": "puravida-30dbb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:645023613235:android:c77b8f58a13b4a8c637e46",
+        "android_client_info": {
+          "package_name": "gov.raon.micitt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAc_HjsWq1jpJeM2_p7pD_Y0-jmIcbDsPU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/noti_item_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/noti_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="4dp"
+            android:textSize="12sp"
+            android:layout_marginTop="8dp"
+            android:lineSpacingExtra="3sp"
+            android:text=""/>
+
+        <TextView
+            android:id="@+id/noti_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="4dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:lineSpacingExtra="4sp"
+            android:text=""/>
+
+        <TextView
+            android:id="@+id/noti_sum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="4sp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:paddingBottom="4dp"
+            android:layout_marginBottom="12dp"
+            android:text=""
+            android:textSize="14sp" />
+
+        <View
+            android:id="@+id/noti_break_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="12dp"
+            android:visibility="gone"
+            android:background="@color/G40"/>
+
+    </LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
