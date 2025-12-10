@@ -1,0 +1,36 @@
+package gov.raon.micitt.models
+
+import com.google.gson.Gson
+
+class CertificateModel : BaseModel {
+    var hashedToken: String
+    var agencyCode: String
+    var dataFormat: String
+    var dataType: String
+    var code: String
+
+    constructor(
+        hashedToken: String,
+        agencyCode: String,
+        dataFormat: String,
+        dataType: String,
+        code: String
+    ) {
+        this.hashedToken = hashedToken
+        this.agencyCode = agencyCode
+        this.dataFormat = dataFormat
+        this.dataType = dataType
+        this.code = code
+    }
+
+
+    override fun fromJson(value: String) {
+        val data = Gson().fromJson(value, CertificateModel::class.java)
+
+        hashedToken = data.hashedToken
+        agencyCode = data.agencyCode
+        dataFormat = data.dataFormat
+        dataType = data.dataType
+        code = data.code
+    }
+}
