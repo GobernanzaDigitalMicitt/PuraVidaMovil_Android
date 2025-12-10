@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/layer_document"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:background="@drawable/bg_certi_card"
+        android:orientation="vertical"
+        android:padding="14dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/btn_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ico_close"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_type"
+                android:layout_width="49dp"
+                android:layout_height="26dp"
+                android:gravity="center"
+                android:text="XML"
+                android:textColor="@color/white"
+                android:background="@drawable/tag"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Health Information"
+                android:lineSpacingExtra="-1sp"
+                android:gravity="top"
+                android:textAppearance="@style/driver_s_li"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/str_issuer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="4dp"
+                    android:text="Emisor"
+                    android:textAppearance="@style/issuer_cost"
+                    android:textStyle="normal"/>
+
+                <TextView
+                    android:id="@+id/str_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Fecha Emisión"
+                    android:paddingBottom="4dp"
+                    android:gravity="top"
+                    android:textAppearance="@style/issuer_cost"
+                    android:textStyle="normal"/>
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_vc"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Ministerio de Hacienda"
+                    android:paddingBottom="4dp"
+
+                    android:textStyle="normal"
+                    android:lineSpacingExtra="2sp"
+                    android:textAppearance="@style/issuer_cost"/>
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="2024. 07. 15"
+                    android:paddingBottom="4dp"
+                    android:textAppearance="@style/issuer_cost"
+                    android:lineSpacingExtra="4sp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>
