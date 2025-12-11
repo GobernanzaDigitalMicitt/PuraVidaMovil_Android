@@ -31,6 +31,7 @@ import gov.raon.micitt.utils.Log
 import gov.raon.micitt.utils.Util
 import android.animation.ObjectAnimator
 import android.view.animation.BounceInterpolator
+import android.widget.RelativeLayout
 
 
 @AndroidEntryPoint
@@ -109,6 +110,8 @@ class MainActivity : BaseActivity() {
         val dialog = Dialog(this, android.R.style.Theme_Black_NoTitleBar_Fullscreen)
         dialog.setContentView(R.layout.dialog_agent)
         val webView = dialog.findViewById<WebView>(R.id.webView)
+        val backButton = dialog.findViewById<RelativeLayout>(R.id.back_rl)
+
         webView.settings.javaScriptEnabled = true
         webView.webChromeClient = object : WebChromeClient() {
             override fun onPermissionRequest(request: PermissionRequest) {
@@ -122,7 +125,12 @@ class MainActivity : BaseActivity() {
                 }
             }
         }
-        webView.loadUrl("https://assistant.ai-kuanta.com/en/chatbot/embed/48d04a12-3d46-457c-89cf-52f989f9acf9")
+        webView.loadUrl("https://assistant.ai-kuanta.com/en/chatbot/embed/21295d48-7220-43ee-9705-a6696e702036?position=right")
+
+        backButton?.setOnClickListener {
+            dialog.dismiss()
+        }
+
         dialog.show()
     }
 

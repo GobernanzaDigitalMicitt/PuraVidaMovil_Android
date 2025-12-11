@@ -50,6 +50,7 @@ import java.util.UUID
 
 import android.animation.ObjectAnimator
 import android.view.animation.BounceInterpolator
+import android.widget.RelativeLayout
 
 @AndroidEntryPoint
 class HomeActivity : BaseActivity() {
@@ -144,7 +145,7 @@ class HomeActivity : BaseActivity() {
 
 private fun startBounceAnimation() {
     // Mueve el botón hacia arriba y luego lo deja "caer" con un interpolador de rebote.
-    val animator = ObjectAnimator.ofFloat(binding.header.agentButton, "translationY", 0f, -10f, 0f).apply {
+    val animator = ObjectAnimator.ofFloat(binding.header.agentButton, "translationY", 0f, -8f, 0f).apply {
         duration = 1500 // 1.5 segundos para un rebote completo
         repeatCount = ObjectAnimator.INFINITE // Bucle infinito
         repeatMode = ObjectAnimator.RESTART
@@ -178,7 +179,6 @@ private fun startBounceAnimation() {
         val licenceItem: TextView = popupView.findViewById(R.id.licence_item)
         val fuelItem: TextView = popupView.findViewById(R.id.fuel_item)
         val exchangeItem: TextView = popupView.findViewById(R.id.exchange_item)
-        val agentItem: TextView = popupView.findViewById(R.id.agent_item)
 
         profileItem.setOnClickListener {
             Intent(this, SettingActivity::class.java).also { intent ->
@@ -227,10 +227,6 @@ private fun startBounceAnimation() {
             popupWindow.dismiss()
         }
 
-        agentItem.setOnClickListener {
-            showAgentDialog()
-            popupWindow.dismiss()
-        }
 
         val display = windowManager.defaultDisplay
         val size = Point()
@@ -250,6 +246,8 @@ private fun startBounceAnimation() {
         val dialog = Dialog(this, android.R.style.Theme_Black_NoTitleBar_Fullscreen)
         dialog.setContentView(R.layout.dialog_agent)
         val webView = dialog.findViewById<WebView>(R.id.webView)
+        val backButton = dialog.findViewById<RelativeLayout>(R.id.back_rl)
+
         webView.settings.javaScriptEnabled = true
         webView.webChromeClient = object : WebChromeClient() {
             override fun onPermissionRequest(request: PermissionRequest) {
@@ -263,7 +261,12 @@ private fun startBounceAnimation() {
                 }
             }
         }
-        webView.loadUrl("https://assistant.ai-kuanta.com/en/chatbot/embed/48d04a12-3d46-457c-89cf-52f989f9acf9")
+        webView.loadUrl("https://assistant.ai-kuanta.com/en/chatbot/embed/21295d48-7220-43ee-9705-a6696e702036?position=right")
+
+        backButton?.setOnClickListener {
+            dialog.dismiss()
+        }
+
         dialog.show()
     }
 

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="60dp">
+    android:layout_height="70dp">
 
         <!-- Back button (hidden by default, shown on specific screens) -->
         <RelativeLayout
@@ -25,42 +25,47 @@
         </RelativeLayout>
 
         <!-- Hamburger Menu Icon -->
-        <RelativeLayout
-            android:id="@+id/more_rl"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:contentDescription="@string/full_menu"
-            android:focusable="true"
-            android:gravity="center_vertical"
-            android:padding="8dp"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-            <View
-                android:layout_width="26dp"
-                android:layout_height="26dp"
-                android:background="@drawable/icon_more_selector" />
-        </RelativeLayout>
 
-        <!-- Agent Icon -->
-        <ImageView
-            android:id="@+id/agent_button"
-            android:layout_width="39dp"
-            android:layout_height="38dp"
-            android:background="@drawable/rounded_agent_button_background"
-            android:clickable="true"
-            android:contentDescription="Agente"
-            android:focusable="true"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            android:src="@drawable/ic_agent"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/more_rl"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/white" />
+    <!-- Agent Icon -->
+
+    <RelativeLayout
+        android:id="@+id/more_rl"
+        android:layout_width="38dp"
+        android:layout_height="61dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:contentDescription="@string/full_menu"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:padding="8dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <View
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:background="@drawable/icon_more_selector" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/agent_button"
+        android:layout_width="39dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/rounded_agent_button_background"
+        android:clickable="true"
+        android:contentDescription="Agente"
+        android:focusable="true"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:src="@drawable/ic_agent"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/more_rl"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
