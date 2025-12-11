@@ -52,20 +52,20 @@
 
     <ImageView
         android:id="@+id/agent_button"
-        android:layout_width="39dp"
-        android:layout_height="38dp"
+        android:layout_width="47dp"
+        android:layout_height="43dp"
         android:layout_marginEnd="30dp"
+        android:adjustViewBounds="true"
         android:background="@drawable/rounded_agent_button_background"
         android:clickable="true"
         android:contentDescription="Agente"
         android:focusable="true"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:src="@drawable/ic_agent"
+        android:padding="4dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_agent_chatbot"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/more_rl"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/white" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

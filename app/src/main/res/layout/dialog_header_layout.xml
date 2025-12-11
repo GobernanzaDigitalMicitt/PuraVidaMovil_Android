@@ -14,9 +14,8 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:clickable="true"
-        android:focusable="false"
-        android:background="@android:color/transparent"
-        android:foreground="?attr/selectableItemBackground"
+        android:focusable="true"
+        android:background="@drawable/dialog_header_button_selector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

@@ -141,14 +141,19 @@
         </RelativeLayout>
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageView
         android:id="@+id/fab_agent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="47dp"
+        android:layout_height="43dp"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:src="@drawable/ic_agent"
-        app:backgroundTint="@color/micitt_theme"
-        app:tint="@color/white" />
+        android:background="@drawable/rounded_agent_button_background"
+        android:clickable="true"
+        android:contentDescription="Agente"
+        android:focusable="true"
+        android:src="@drawable/ic_agent_chatbot"
+        android:scaleType="centerInside"
+        android:adjustViewBounds="true"
+        android:padding="4dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
