@@ -195,35 +195,35 @@ class MainActivity : BaseActivity() {
     }
 
     private fun handleSignIn() {
+        /*
+               // BYPASS TEMPORAL: Redirige directamente a HomeActivity con datos de prueba.
+               nId = binding.etNid.text.toString()
+               val dummyNid = "000000000"
 
-        // BYPASS TEMPORAL: Redirige directamente a HomeActivity con datos de prueba.
-        nId = binding.etNid.text.toString()
-        val dummyNid = "000000000"
+               if (nId.isNullOrEmpty() || nId!!.length < 9) {
+                   // Usa un ID ficticio para evitar fallos en Util.hashSHA256(nId!!)
+                   nId = dummyNid
+               }
 
-        if (nId.isNullOrEmpty() || nId!!.length < 9) {
-            // Usa un ID ficticio para evitar fallos en Util.hashSHA256(nId!!)
-            nId = dummyNid
-        }
+               val dummyHashedToken = "TEMPORARY_TOKEN_FOR_VISUAL_CHANGES"
+               val dummyUserName = "Usuario Temporal"
 
-        val dummyHashedToken = "TEMPORARY_TOKEN_FOR_VISUAL_CHANGES"
-        val dummyUserName = "Usuario Temporal"
+               // Lógica de navegación directa, omitiendo la autenticación y la gestión de authDialog
+               editor.putString("nid", nId)
+               editor.putString("hashedToken", dummyHashedToken)
+               editor.putString("userName", dummyUserName)
+               editor.apply()
+               Intent(this, HomeActivity::class.java).also { intent ->
+                   intent.putExtra("hashedNid", Util.hashSHA256(nId!!))
+                   intent.putExtra("hashedToken", dummyHashedToken)
+                   startActivity(intent)
+                   finish()
+               }
 
-        // Lógica de navegación directa, omitiendo la autenticación y la gestión de authDialog
-        editor.putString("nid", nId)
-        editor.putString("hashedToken", dummyHashedToken)
-        editor.putString("userName", dummyUserName)
-        editor.apply()
-        Intent(this, HomeActivity::class.java).also { intent ->
-            intent.putExtra("hashedNid", Util.hashSHA256(nId!!))
-            intent.putExtra("hashedToken", dummyHashedToken)
-            startActivity(intent)
-            finish()
-        }
+               return
 
-        return
-        // END TEMPORARY BYPASS
-
-        /* ORIGINAL LOGIC (COMMENTED OUT)
+               // END TEMPORARY BYPASS
+               */
         nId = binding.etNid.text.toString()
         if (nId!!.length < 9) {
             showToast("Por favor introduzca al menos 9 dígitos")
@@ -234,7 +234,6 @@ class MainActivity : BaseActivity() {
             showProgress()
             mainViewModel.reqSignIn(this, signModel)
         }
-        */
     }
 
     private fun initObservers() {
